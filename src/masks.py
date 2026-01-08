@@ -25,6 +25,6 @@ def get_mask_account(account_number: str) -> str:
     cleared_account_number = account_number.replace(" ", "")
 
     # Проверяем правильность введенных данных с выводом ошибки
-    if len(cleared_account_number) != 6 or not account_number.isdigit():
+    if len(cleared_account_number) != 20 or not account_number.isdigit():
         raise ValueError("Invalid account number")
     return f"**{cleared_account_number[-4:]}"
