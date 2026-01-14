@@ -1,2 +1,4 @@
-# Homeworks_-Vitaliy_Gubin-
+# Homeworks_(Vitaliy_Gubin)
+##Описание:
 Домашние задания по курсам SkyPro
+##Установка:
