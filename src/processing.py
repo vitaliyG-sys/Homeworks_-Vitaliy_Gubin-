@@ -1,15 +1,16 @@
 def filter_by_state(operations: list[dict], state: str = "EXECUTED") -> list[dict]:
-    """Функция принимает список словарей и возвращает
-    список словарей со значением ключа state:"EXECUTED" """
-    executed_operations = []
+    """Функция принимает список словарей и опционально значение для ключа "state" (по умолчанию "EXECUTED")
+    и возвращает новый список словарей, содержащий только те словари,
+    у которых ключ state соответствует указанному значению."""
+    sorted_operations = []
     for operation in operations:
-        if operation.get("state") == "EXECUTED":
-            executed_operations.append(operation)
-            continue
-    return executed_operations
+        if operation.get("state") == state:
+            sorted_operations.append(operation)
+    return sorted_operations
 
 
-def sort_by_date(operations: list[dict]) -> list[dict]:
-    """Функция принимает список словарей и возвращает
-    список словарей отсортированный по дате в порядке убывания"""
-    return sorted(operations, key=lambda operation: operation["date"], reverse=True)
+def sort_by_date(operations: list[dict], order: bool = True) -> list[dict]:
+    """Функция принимает список словарей и необязательный параметр,
+    задающий порядок сортировки (по умолчанию — убывание)
+    и возвращает новый список, отсортированный по дате"""
+    return sorted(operations, key=lambda operation: operation["date"], reverse=order)
