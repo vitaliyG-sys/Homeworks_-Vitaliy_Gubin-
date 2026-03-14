@@ -14,6 +14,12 @@ https://github.com/vitaliyG-sys/Homeworks_-Vitaliy_Gubin-.git
 
 ## Реализованные функции:
 
+### модуль decorators.py
+
+1. Декоратор, который автоматически логирует начало и конец выполнения функции,
+    а также ее результаты или возникшие ошибки. Принимает необязательный аргумент "filename",
+    который определяет, куда будут записываться логи (в файл или в консоль).
+
 ### модуль generators.py
 
 1. функция filter_by_currency : Генератор принимает на вход список словарей, представляющих транзакции.
@@ -66,6 +72,55 @@ https://github.com/vitaliyG-sys/Homeworks_-Vitaliy_Gubin-.git
 Тесты находятся в пакете "tests"
 
 ## Описание тестов:
+
+### модуль test_decorators.py
+
+1. test_log_with_filename
+
+Проверяет работу декоратора с указанным параметром "filename".
+
+2. test_log_without_filename
+
+Проверяет работу декоратора без указанного параметра "filename".
+
+3. test_log_console_logging
+
+Проверяет корректность записи в консоль.
+
+4. test_log_error
+
+Проверяет обработку исключений декоратора.
+
+### модуль test_generators.py
+
+1. test_filter_by_currency_correct_value
+
+Проверяет работу функции с корректно заданной валютой включая случаи, когда валюта отсутствует.
+
+2. test_filter_by_currency_empty_data
+
+Проверяет работу функции с пустыми данными.
+
+3. test_filter_by_currency_missing_currency
+
+Проверяет работу функции если есть список без соответствующих валютных операций.
+
+4. test_transaction_descriptions_correct_value
+
+Проверяет работу функции с корректно введенными данными и превышением запросов.
+
+5. test_transaction_descriptions_empty_value
+
+Проверяет работу функции с пустым списком.
+
+6. test_card_number_generator_correct_value
+
+Проверяет работу функции на корректность номеров карт в заданном диапазоне
+    и корректность форматирования карт.
+
+7. test_card_number_generator_boundary_cases
+
+Проверяет работу функции на соблюдение граничных случаев диапазона номеров карт.
 
 ### модуль tests_masks.py
 
@@ -175,34 +230,3 @@ https://github.com/vitaliyG-sys/Homeworks_-Vitaliy_Gubin-.git
 9. test_get_date_incorrect_calendar_values
 
 Проверяет работу функции "get_date" с неправильными значениями календаря.
-
-### модуль test_generators.py
-
-1. test_filter_by_currency_correct_value
-
-Проверяет работу функции с корректно заданной валютой включая случаи, когда валюта отсутствует.
-
-2. test_filter_by_currency_empty_data
-
-Проверяет работу функции с пустыми данными.
-
-3. test_filter_by_currency_missing_currency
-
-Проверяет работу функции если есть список без соответствующих валютных операций.
-
-4. test_transaction_descriptions_correct_value
-
-Проверяет работу функции с корректно введенными данными и превышением запросов.
-
-5. test_transaction_descriptions_empty_value
-
-Проверяет работу функции с пустым списком.
-
-6. test_card_number_generator_correct_value
-
-Проверяет работу функции на корректность номеров карт в заданном диапазоне
-    и корректность форматирования карт.
-
-7. test_card_number_generator_boundary_cases
-
-Проверяет работу функции на соблюдение граничных случаев диапазона номеров карт.
