@@ -25,5 +25,4 @@ def test_currency_conversion_correct_data(mock_get: Mock, correct_transactions_f
 def test_currency_conversion_server_error(mock_get: Mock, correct_transactions_for_generators: list[dict]) -> None:
     """2. Проверяет работу функции "currency_conversion" статус-код:500 Internal Server Error."""
     mock_get.return_value.status_code = 500
-    with pytest.raises(Exception, match="Error 500"):
-        currency_conversion("USD")
+    assert not currency_conversion("USD")

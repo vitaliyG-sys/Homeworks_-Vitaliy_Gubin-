@@ -20,13 +20,16 @@ def currency_conversion(currency_from: str, currency_to: str = "RUB", amount: in
 
     payload = {"amount": amount, "from": currency_from, "to": currency_to}
     headers = {"apikey": API_KEY}
+    try:
+        response = requests.get(url, headers=headers, params=payload)
 
-    response = requests.get(url, headers=headers, params=payload)
+        status_code = response.status_code
+        result = response.json()
+        rate = result["info"]["rate"]
+        if status_code == 200 and rate:
+            return rate
+        elif status_code != 200:
+            return None
+    except KeyError:
+        return None
 
-    status_code = response.status_code
-    result = response.json()
-    rate = result["info"]["rate"]
-    if status_code == 200:
-        return rate
-    else:
-        raise Exception(f"Error {status_code}")
