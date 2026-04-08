@@ -34,6 +34,12 @@ https://github.com/vitaliyG-sys/Homeworks_-Vitaliy_Gubin-.git
     от 0000 0000 0000 0001 до 9999 9999 9999 9999.
     Принимает начальное и конечное значения для генерации диапазона номеров.
 
+### external_api.py
+
+1. функция currency_conversion : Функция для обращения к внешнему API для получения текущего курса валют и конвертации суммы операции в рубли.
+    Для конвертации валюты использован сервис "Exchange Rates Data API": https://apilayer.com/exchangerates_data-api.
+    Параметры по умолчанию возвращают курс 1 заданной единицы валюты в рублях.
+
 ### модуль masks.py
 
 1. функция get_mask_card_number: Принимает номер карты и возвращает в формате 'XXXX XX** **** XXXX'
@@ -47,6 +53,21 @@ https://github.com/vitaliyG-sys/Homeworks_-Vitaliy_Gubin-.git
 
 2. функция sort_by_date: Принимает список словарей
    и возвращает список словарей отсортированный по дате в порядке убывания
+
+### модуль read_files.py
+
+1. функция read_csv: Функция для считывания финансовых операций из CSV. Возвращает список словарей с транзакциями.
+
+2. функция read_excel: Функция для считывания финансовых операций из Excel. Возвращает список словарей с транзакциями.
+
+### модуль utils.py
+
+1. функция get_json_file: Функция, которая принимает на вход путь до JSON-файла и возвращает список словарей с данными о финансовых
+    транзакциях. Если файл пустой, содержит не список или не найден, функция возвращает пустой список.
+
+2. функция transaction_sum_in_rub: Функция, которая принимает на вход транзакцию и возвращает сумму транзакции (amount) в рублях,
+    тип данных — float. Если транзакция была в USD или EUR, происходит обращение к внешнему API для получения
+    текущего курса валют и конвертации суммы операции в рубли.
 
 ### модуль widget.py
 
@@ -90,6 +111,16 @@ https://github.com/vitaliyG-sys/Homeworks_-Vitaliy_Gubin-.git
 4. test_log_error
 
 Проверяет обработку исключений декоратора.
+
+### модуль test_external_api.py
+
+1. test_currency_conversion_correct_data
+
+Проверяет работу функции "currency_conversion" с корректно введенными данными.
+
+2. test_currency_conversion_server_error
+
+Проверяет работу функции "currency_conversion" статус-код:500 Internal Server Error.
 
 ### модуль test_generators.py
 
@@ -192,6 +223,59 @@ https://github.com/vitaliyG-sys/Homeworks_-Vitaliy_Gubin-.git
 8. test_sort_by_date_incorrect_data_type_dict
 
 Проверяет работу функции "sort_by_date" с неправильным типом данных 'dict'.
+
+9. test_sort_by_date_empty_date_value
+
+Проверяет работу функции "sort_by_date" с пустыми данными.
+
+10. test_sort_by_date_no_key_date
+
+Проверяет работу функции "sort_by_date" с отсутствующим ключом 'date'.
+
+### модуль test_read_files.py
+
+1. test_open_read_csv
+
+Проверяет работу функции "read_csv" с корректно введенными данными.
+
+2. test_read_csv_file_not_found
+
+Проверяет работу функции "read_csv" с обработкой ошибки FileNotFoundError.
+
+3. test_read_excel
+
+Проверяет работу функции "read_excel" с корректно введенными данными.
+
+4. test_read_excel_file_not_found
+
+Проверяет работу функции "read_excel" с обработкой ошибки FileNotFoundError.
+
+
+### модуль test_utils.py
+
+1. test_get_json_file_correct_data
+
+Проверяет работу функции "get_json_file" с корректно введенными данными.
+
+2. test_get_json_file_not_found
+
+Проверяет работу функции "get_json_file" с обработкой ошибки FileNotFoundError.
+
+3. test_get_json_file_decode_error
+
+Проверяет работу функции "get_json_file" с обработкой ошибки json.JSONDecodeError.
+
+4. test_transaction_sum_in_rub_correct_value
+
+Проверяет работу функции "transaction_sum_in_rub" с корректно введенными данными.
+
+5. test_transaction_sum_in_rub_no_rate
+
+Проверяет работу функции "transaction_sum_in_rub" c ошибкой конвертации валют.
+
+6. test_transaction_sum_in_rub_empty_transactions
+
+Проверяет работу функции "transaction_sum_in_rub" с пустым списком в переданном аргументе.
 
 ### модуль test_widget.py
 
