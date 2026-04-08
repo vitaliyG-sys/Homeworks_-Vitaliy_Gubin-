@@ -1,5 +1,11 @@
+# MyProject
+
+data/operations.json
+data/transactions.csv
+data/transactions_excel.xlsx
 src/TEMP.py
 src/mylog.txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
