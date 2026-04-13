@@ -1,6 +1,6 @@
 import json
 import os
-from unittest.mock import mock_open, patch, Mock
+from unittest.mock import Mock, mock_open, patch
 
 import pytest
 
@@ -34,20 +34,20 @@ def test_get_json_file_decode_error() -> None:
 
 @patch("src.utils.currency_conversion")
 def test_transaction_sum_in_rub_correct_value(mock_cc: Mock, correct_transactions_for_generators: list[dict]) -> None:
-    """1. Проверяет работу функции "transaction_sum_in_rub" с корректно введенными данными."""
+    """4. Проверяет работу функции "transaction_sum_in_rub" с корректно введенными данными."""
     mock_cc.return_value = "1"
     assert transaction_sum_in_rub(correct_transactions_for_generators) == 256455.58
 
 
 @patch("src.utils.currency_conversion")
 def test_transaction_sum_in_rub_no_rate(mock_cc: Mock, correct_transactions_for_generators: list[dict]) -> None:
-    """2. Проверяет работу функции "transaction_sum_in_rub" c ошибкой конвертации валют."""
+    """5. Проверяет работу функции "transaction_sum_in_rub" c ошибкой конвертации валют."""
     mock_cc.return_value = None
     with pytest.raises(ValueError, match="Ошибка конвертации валюты"):
         transaction_sum_in_rub(correct_transactions_for_generators)
 
 
 def test_transaction_sum_in_rub_empty_transactions() -> None:
-    """3. Проверяет работу функции "transaction_sum_in_rub" с пустым списком в переданном аргументе."""
+    """6. Проверяет работу функции "transaction_sum_in_rub" с пустым списком в переданном аргументе."""
     with pytest.raises(ValueError, match="Отсутствует информация по транзакциям"):
         transaction_sum_in_rub([])
