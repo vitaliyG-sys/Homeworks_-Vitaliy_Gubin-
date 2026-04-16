@@ -3,12 +3,16 @@ import pytest
 from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 
 
-def test_filter_by_currency_correct_value(correct_transactions_for_generators: list[dict]) -> None:
+def test_filter_by_currency_correct_value(correct_transactions_for_generators: list[dict],
+                                          correct_transactions_for_generators_csv: list[dict]) -> None:
     """1. Проверяет работу функции "filter_by_currency" с корректно заданной валютой включая случаи,
     когда валюта отсутствует."""
     assert len(list(filter_by_currency(correct_transactions_for_generators, "USD"))) == 3
     assert len(list(filter_by_currency(correct_transactions_for_generators, "RUB"))) == 2
     assert len(list(filter_by_currency(correct_transactions_for_generators, "JPY"))) == 0
+    assert len(list(filter_by_currency(correct_transactions_for_generators_csv, "USD"))) == 1
+    assert len(list(filter_by_currency(correct_transactions_for_generators_csv, "IDR"))) == 2
+    assert len(list(filter_by_currency(correct_transactions_for_generators_csv, "JPY"))) == 0
 
 
 def test_filter_by_currency_empty_data(correct_transactions_for_generators: list[dict]) -> None:
@@ -88,13 +92,13 @@ def test_transaction_descriptions_empty_value() -> None:
     "expected_numbers",
     [
         (
-            "0000 0000 0000 0052",
-            "0000 0000 0000 0053",
-            "0000 0000 0000 0054",
-            "0000 0000 0000 0055",
-            "0000 0000 0000 0056",
-            "0000 0000 0000 0057",
-            "0000 0000 0000 0058",
+                "0000 0000 0000 0052",
+                "0000 0000 0000 0053",
+                "0000 0000 0000 0054",
+                "0000 0000 0000 0055",
+                "0000 0000 0000 0056",
+                "0000 0000 0000 0057",
+                "0000 0000 0000 0058",
         )
     ],
 )
