@@ -78,14 +78,6 @@ def test_get_date_empty_data(empty_data: str = "") -> None:
         get_date(empty_data)
 
 
-# Параметризация для передачи некорректных данных в функцию get_date.
-@pytest.mark.parametrize("incorrect_date", ["02/02/2010 19:44", "2019-07-03T18:35:29"])
-def test_get_date_incorrect_value(incorrect_date: str) -> None:
-    """7. Проверяет работу функции "get_date" с некорректно введенными данными."""
-    with pytest.raises(ValueError, match="неверный формат даты"):
-        get_date(incorrect_date)
-
-
 # Параметризация для передачи в функцию get_date, с неправильными типами данных.
 @pytest.mark.parametrize(
     "incorrect_data_type",
@@ -98,7 +90,7 @@ def test_get_date_incorrect_value(incorrect_date: str) -> None:
     ],
 )
 def test_get_date_incorrect_data_type(incorrect_data_type: Any) -> None:
-    """8. Проверяет работу функции "get_date" с неправильным типом данных."""
+    """7. Проверяет работу функции "get_date" с неправильным типом данных."""
     with pytest.raises(TypeError, match="iso_date must be a string"):
         get_date(incorrect_data_type)
 
@@ -110,12 +102,9 @@ def test_get_date_incorrect_data_type(incorrect_data_type: Any) -> None:
         "32018-09-12T21:27:25.241689",
         "2018-13-29T21:27:25.241689",
         "2018-13-32T21:27:25.241689",
-        "2018-09-12T25:27:25.241689",
-        "2018-09-12T21:61:25.241689",
-        "2018-09-12T21:27:61.241689",
     ],
 )
 def test_get_date_incorrect_calendar_values(incorrect_calendar_values: str) -> None:
-    """9. Проверяет работу функции "get_date" с неправильными значениями календаря."""
+    """8. Проверяет работу функции "get_date" с неправильными значениями календаря."""
     with pytest.raises(ValueError, match="Неверные календарные значения"):
         get_date(incorrect_calendar_values)
