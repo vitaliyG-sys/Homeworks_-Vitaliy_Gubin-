@@ -14,11 +14,55 @@ https://github.com/vitaliyG-sys/Homeworks_-Vitaliy_Gubin-.git
 
 ## Реализованные функции:
 
+### модуль main.py
+
+1. Функция main: **Основная функция в модуле main**. Отвечает за основную логику проекта
+   и связывает функциональности между собой.
+
+2. Функция file_type_settings: Запрашивает из какого формата файла будет составлен запрос.
+    Считывает файл из папки "/data" в зависимости от выбора.
+
+3. Функция transaction_status: Запрашивает статус, по которому необходимо выполнить фильтрацию,
+   "EXECUTED/CANCELED/PENDING". Затем фильтрует данные в зависимости от выбора.
+
+4. Функция transaction_sorted_by_date: Запрашивает о необходимости сортировки по возрастанию или по убыванию "Да/Нет".
+    При положительном ответе сортирует данные в зависимости от выбора.
+
+  4.1  Функция crease_setting: Запрашивает какой использовать порядок сортировки "по возрастанию/по убыванию".
+
+5. Функция transaction_filtered_by_currency: Запрашивает о необходимости вывода только рублевых транзакций "Да/Нет".
+    При положительном ответе фильтрует данные.
+
+6. Функция transaction_filtered_by_description: Запрашивает о необходимости поиска по ключевым словам "Да/Нет".
+
+7. Декоратор decorator: Запускает функцию main().
+    Выводит приветственное сообщение и транзакции из поиска в формате:
+
+    12.11.2019 Перевод с карты на карту
+
+    MasterCard 7771 27** **** 3727 -> Visa Platinum 1293 38** **** 9203
+
+    Сумма: 130 USD
+
+    18.07.2018 Перевод организации
+
+    Visa Platinum 7492 65** **** 7202 -> Счет **0034
+
+    Сумма: 8390 руб.
+
+
 ### модуль decorators.py
 
 1. Декоратор, который автоматически логирует начало и конец выполнения функции,
     а также ее результаты или возникшие ошибки. Принимает необязательный аргумент "filename",
     который определяет, куда будут записываться логи (в файл или в консоль).
+
+### модуль external_api.py
+
+1. функция currency_conversion: Функция для обращения к внешнему API для получения текущего курса валют
+    и конвертации суммы операции в рубли. Для конвертации валюты использован сервис
+    "Exchange Rates Data API": https://apilayer.com/exchangerates_data-api.
+    Параметры по умолчанию возвращают курс 1 заданной единицы валюты в рублях.
 
 ### модуль generators.py
 
@@ -34,12 +78,6 @@ https://github.com/vitaliyG-sys/Homeworks_-Vitaliy_Gubin-.git
     от 0000 0000 0000 0001 до 9999 9999 9999 9999.
     Принимает начальное и конечное значения для генерации диапазона номеров.
 
-### external_api.py
-
-1. функция currency_conversion : Функция для обращения к внешнему API для получения текущего курса валют и конвертации суммы операции в рубли.
-    Для конвертации валюты использован сервис "Exchange Rates Data API": https://apilayer.com/exchangerates_data-api.
-    Параметры по умолчанию возвращают курс 1 заданной единицы валюты в рублях.
-
 ### модуль masks.py
 
 1. функция get_mask_card_number: Принимает номер карты и возвращает в формате 'XXXX XX** **** XXXX'
@@ -54,6 +92,13 @@ https://github.com/vitaliyG-sys/Homeworks_-Vitaliy_Gubin-.git
 2. функция sort_by_date: Принимает список словарей
    и возвращает список словарей отсортированный по дате в порядке убывания
 
+3. функция process_bank_search: Принимает список словарей с данными о банковских операциях и строку поиска.
+     Возвращает список словарей, у которых в описании есть данная строка.
+
+4. функция process_bank_operations: Принимает список словарей с данными о банковских операциях и список категорий 
+   операций. Возвращает словарь, в котором ключи — это названия категорий, а значения 
+ — это количество операций в каждой категории.
+
 ### модуль read_files.py
 
 1. функция read_csv: Функция для считывания финансовых операций из CSV. Возвращает список словарей с транзакциями.
@@ -62,10 +107,10 @@ https://github.com/vitaliyG-sys/Homeworks_-Vitaliy_Gubin-.git
 
 ### модуль utils.py
 
-1. функция get_json_file: Функция, которая принимает на вход путь до JSON-файла и возвращает список словарей с данными о финансовых
+1. функция get_json_file: Принимает на вход путь до JSON-файла и возвращает список словарей с данными о финансовых 
     транзакциях. Если файл пустой, содержит не список или не найден, функция возвращает пустой список.
 
-2. функция transaction_sum_in_rub: Функция, которая принимает на вход транзакцию и возвращает сумму транзакции (amount) в рублях,
+2. transaction_sum_in_rub: Принимает на вход транзакцию и возвращает сумму транзакции (amount) в рублях,
     тип данных — float. Если транзакция была в USD или EUR, происходит обращение к внешнему API для получения
     текущего курса валют и конвертации суммы операции в рубли.
 
@@ -199,38 +244,36 @@ https://github.com/vitaliyG-sys/Homeworks_-Vitaliy_Gubin-.git
 
 Проверяет работу функции "filter_by_state" с параметром state не указанным в ТЗ.
 
-3. test_filter_by_state_incorrect_data_type_list
-
-Проверяет работу функции "filter_by_state" с неправильным типом данных  'list'.
-
-4. test_filter_by_state_incorrect_data_type_dict
-
-Проверяет работу функции "filter_by_state" с неправильным типом данных  'dict'.
-
-5. test_sort_by_date_correct_value
+3. test_sort_by_date_correct_value
 
 Проверяет работу функции "sort_by_date" с корректно введенными данными и
     параметрами  order: "по умолчанию", "True" и "False".
 
-6. test_sort_by_date_incorrect_value
-
-Проверяет работу функции "sort_by_date" с некорректными или нестандартными форматами дат.
-
-7. test_sort_by_date_incorrect_data_type_list
+4. test_sort_by_date_incorrect_data_type_list
 
 Проверяет работу функции "sort_by_date" с неправильным типом данных 'list'.
 
-8. test_sort_by_date_incorrect_data_type_dict
+5. test_sort_by_date_incorrect_data_type_dict
 
 Проверяет работу функции "sort_by_date" с неправильным типом данных 'dict'.
 
-9. test_sort_by_date_empty_date_value
+6. test_sort_by_date_empty_date_value
 
 Проверяет работу функции "sort_by_date" с пустыми данными.
 
-10. test_sort_by_date_no_key_date
+7. test_sort_by_date_no_key_date
 
 Проверяет работу функции "sort_by_date" с отсутствующим ключом 'date'.
+
+8. test_process_bank_search_correct_value
+
+Проверяет работу функции "process_bank_search" с корректно введенными данными и параметрами search,
+включая пустое значение.
+
+9. test_process_bank_operations_correct_value
+
+Проверяет работу функции "process_bank_operations" с корректно введенными данными и параметрами search,
+включая пустой список.
 
 ### модуль test_read_files.py
 
@@ -249,7 +292,6 @@ https://github.com/vitaliyG-sys/Homeworks_-Vitaliy_Gubin-.git
 4. test_read_excel_file_not_found
 
 Проверяет работу функции "read_excel" с обработкой ошибки FileNotFoundError.
-
 
 ### модуль test_utils.py
 
@@ -301,16 +343,12 @@ https://github.com/vitaliyG-sys/Homeworks_-Vitaliy_Gubin-.git
 
 6. test_get_date_empty_data
 
-Проверяет работу функции "get_date" с пустыми данными.
+Проверяет работу функции "get_date" с пустыми данными. 
 
-7. test_get_date_incorrect_value
-
-Проверяет работу функции "get_date" с некорректно введенными данными.
-
-8. test_get_date_incorrect_data_type
+7. test_get_date_incorrect_data_type
 
 Проверяет работу функции "get_date" с неправильным типом данных.
 
-9. test_get_date_incorrect_calendar_values
+8. test_get_date_incorrect_calendar_values
 
 Проверяет работу функции "get_date" с неправильными значениями календаря.
