@@ -42,12 +42,10 @@ def get_date(iso_date: str) -> str:
     # Условие проверяет наличие даты в переданном аргументе.
     elif iso_date == "":
         raise ValueError("не указана дата операции")
-    # Условие проверяет правильность переданного формата даты.
-    elif len(iso_date) < 21 or "".join(x for x in iso_date if not x.isdigit()) != "--T::.":
-        raise ValueError("неверный формат даты")
     try:
+        date = iso_date[:10]
         # Форматирует строку в datetime
-        date_time = dt.strptime(iso_date, "%Y-%m-%dT%H:%M:%S.%f")
+        date_time = dt.strptime(date, "%Y-%m-%d")
         return date_time.strftime("%d.%m.%Y")
     # Исключение для некорректных календарных значений.
     except ValueError:
