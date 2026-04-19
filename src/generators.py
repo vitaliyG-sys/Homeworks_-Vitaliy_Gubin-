@@ -11,14 +11,12 @@ def filter_by_currency(operations: list[dict], currency: str) -> Generator[dict,
         raise ValueError("Веден пустой список")
     for operation in operations:
         # Условие проверяет наличие ключей 'code', 'currency' и 'operationAmount' во вложенных словарях.
-        if (
-            not operation.get("operationAmount", {}).get("currency", {}).get("code", {})
-            or not operation.get("operationAmount", {}).get("currency", {})
-            or not operation.get("operationAmount", {})
-        ):
+        if "code" not in operation.get("operationAmount", {}).get("currency", {}) and "currency_code" not in operation:
             raise KeyError("Отсутствуют данные по валютным операциям")
         # Условие возвращает объект по заданной валюте.
-        elif operation.get("operationAmount", {}).get("currency", {}).get("code", {}) == currency:
+        if operation.get("operationAmount", {}).get("currency", {}).get("code", {}) == currency:
+            yield operation
+        elif operation.get("currency_code", {}) == currency:
             yield operation
 
 

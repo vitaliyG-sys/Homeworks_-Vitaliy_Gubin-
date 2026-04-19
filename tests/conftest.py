@@ -103,75 +103,118 @@ def correct_transactions_for_generators() -> list[dict]:
             "id": 939719570,
             "state": "EXECUTED",
             "date": "2018-06-30T02:08:58.425572",
-            "operationAmount": {
-                "amount": "9824.07",
-                "currency": {
-                    "name": "USD",
-                    "code": "USD"
-                }
-            },
+            "operationAmount": {"amount": "9824.07", "currency": {"name": "USD", "code": "USD"}},
             "description": "Перевод организации",
             "from": "Счет 75106830613657916952",
-            "to": "Счет 11776614605963066702"
+            "to": "Счет 11776614605963066702",
         },
         {
             "id": 142264268,
             "state": "EXECUTED",
             "date": "2019-04-04T23:20:05.206878",
-            "operationAmount": {
-                "amount": "79114.93",
-                "currency": {
-                    "name": "USD",
-                    "code": "USD"
-                }
-            },
+            "operationAmount": {"amount": "79114.93", "currency": {"name": "USD", "code": "USD"}},
             "description": "Перевод со счета на счет",
             "from": "Счет 19708645243227258542",
-            "to": "Счет 75651667383060284188"
+            "to": "Счет 75651667383060284188",
         },
         {
             "id": 873106923,
             "state": "EXECUTED",
             "date": "2019-03-23T01:09:46.296404",
-            "operationAmount": {
-                "amount": "43318.34",
-                "currency": {
-                    "name": "руб.",
-                    "code": "RUB"
-                }
-            },
+            "operationAmount": {"amount": "43318.34", "currency": {"name": "руб.", "code": "RUB"}},
             "description": "Перевод со счета на счет",
             "from": "Счет 44812258784861134719",
-            "to": "Счет 74489636417521191160"
+            "to": "Счет 74489636417521191160",
         },
         {
             "id": 895315941,
             "state": "EXECUTED",
             "date": "2018-08-19T04:27:37.904916",
-            "operationAmount": {
-                "amount": "56883.54",
-                "currency": {
-                    "name": "USD",
-                    "code": "USD"
-                }
-            },
+            "operationAmount": {"amount": "56883.54", "currency": {"name": "USD", "code": "USD"}},
             "description": "Перевод с карты на карту",
             "from": "Visa Classic 6831982476737658",
-            "to": "Visa Platinum 8990922113665229"
+            "to": "Visa Platinum 8990922113665229",
         },
         {
             "id": 594226727,
             "state": "CANCELED",
             "date": "2018-09-12T21:27:25.241689",
-            "operationAmount": {
-                "amount": "67314.70",
-                "currency": {
-                    "name": "руб.",
-                    "code": "RUB"
-                }
-            },
+            "operationAmount": {"amount": "67314.70", "currency": {"name": "руб.", "code": "RUB"}},
             "description": "Перевод организации",
             "from": "Visa Platinum 1246377376343588",
-            "to": "Счет 14211924144426031657"
-        }
+            "to": "Счет 14211924144426031657",
+        },
+    ]
+
+
+# Фикстура возвращает пример корректного ввода для тестирования корректной работы функции "get_mask_card_number"
+@pytest.fixture
+def correct_transactions_for_generators_csv() -> list[dict]:
+    return [
+        {
+            "id": 4288910.0,
+            "state": "EXECUTED",
+            "date": "2020-01-22T23:32:19Z",
+            "amount": 17427.0,
+            "currency_name": "Dollar",
+            "currency_code": "USD",
+            "from": "Discover 6357710409200211",
+            "to": "Discover 7853440366492448",
+            "description": "Перевод с карты на карту",
+        },
+        {
+            "id": 2805255.0,
+            "state": "EXECUTED",
+            "date": "2020-01-14T16:52:27Z",
+            "amount": 12623.0,
+            "currency_name": "Dong",
+            "currency_code": "VND",
+            "from": "Discover 8074052428133610",
+            "to": "American Express 2577371208766671",
+            "description": "Перевод с карты на карту",
+        },
+        {
+            "id": 23440.0,
+            "state": "EXECUTED",
+            "date": "2020-01-12T21:18:53Z",
+            "amount": 18722.0,
+            "currency_name": "Rupiah",
+            "currency_code": "IDR",
+            "from": "Mastercard 5602170315013567",
+            "to": "Mastercard 8900744357320212",
+            "description": "Перевод с карты на карту",
+        },
+        {
+            "id": 5293227.0,
+            "state": "EXECUTED",
+            "date": "2020-01-04T09:08:53Z",
+            "amount": 20057.0,
+            "currency_name": "Rupiah",
+            "currency_code": "IDR",
+            "from": "American Express 2116425281031997",
+            "to": "American Express 8012980677386841",
+            "description": "Перевод с карты на карту",
+        },
+        {
+            "id": 4124955.0,
+            "state": "EXECUTED",
+            "date": "2020-01-01T14:34:00Z",
+            "amount": 34119.0,
+            "currency_name": "Yuan Renminbi",
+            "currency_code": "CNY",
+            "from": "Visa 4485542637612146",
+            "to": "Счет 28542261928514137912",
+            "description": "Перевод организации",
+        },
+        {
+            "id": 3682775.0,
+            "state": "EXECUTED",
+            "date": "2020-01-01T05:03:33Z",
+            "amount": 12764.0,
+            "currency_name": "Manat",
+            "currency_code": "AZN",
+            "from": "American Express 2957863070974974",
+            "to": "American Express 6990780344978331",
+            "description": "Перевод с карты на карту",
+        },
     ]

@@ -13,7 +13,6 @@ def currency_conversion(currency_from: str, currency_to: str = "RUB", amount: in
     load_dotenv()
     API_KEY = os.getenv("API_KEY")
 
-
     #    Пример запроса:
     #    url = "https://api.apilayer.com/exchangerates_data/convert?to={to}&from={from}&amount={amount}
     url = "https://api.apilayer.com/exchangerates_data/convert"
